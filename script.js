@@ -32,7 +32,7 @@ async function getSongs(folder) {
     }
     console.log(songs)
     
-    let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0];
+    let songUL = document.querySelector(".songList").getElementsByTagName("ul")[1];
     songUL.innerHTML="";
     for (const song of songs) {
         songUL.innerHTML = songUL.innerHTML + `<li>
