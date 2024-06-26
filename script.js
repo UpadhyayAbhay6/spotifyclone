@@ -16,7 +16,7 @@ function convertSecondsToMinutesAndSeconds(seconds) {
 
 async function getSongs(folder) {
     currFolder = folder;
-    let a = await fetch(`spotifyclone/${folder}/`);
+    let a = await fetch(`/${folder}/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -60,7 +60,7 @@ async function getSongs(folder) {
 }
 
 const playMusic = (track, pause = false) => {
-    currentSong.src = `/spotifyclone/${currFolder}/` + track
+    currentSong.src = `/${currFolder}/` + track
     if (!pause) {
         currentSong.play()
         play.src = "SVG/pause.svg"
@@ -70,7 +70,7 @@ const playMusic = (track, pause = false) => {
 
 }
 async function displayAlbums(){
-    let a = await fetch(`spotifyclone/songsPlaylist/`);
+    let a = await fetch(`songsPlaylist/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -82,7 +82,7 @@ async function displayAlbums(){
         if(e.href.includes("spotifyclone/songsPlaylist/") && !e.href.includes(".htaccess")){
             let folder = e.href.split("/").slice(-2)[1]
             console.log(folder)
-            let a = await fetch(`/spotifyclone/songsPlaylist/${folder}/info.json`);
+            let a = await fetch(`/songsPlaylist/${folder}/info.json`);
             console.log(a)
             let response = await a.json()
             
