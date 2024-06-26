@@ -70,7 +70,7 @@ const playMusic = (track, pause = false) => {
 
 }
 async function displayAlbums(){
-    let a = await fetch(`songsPlaylist/`);
+    let a = await fetch(`/songsPlaylist/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -79,7 +79,7 @@ async function displayAlbums(){
     let array = Array.from(anchors)
     for(let index=0; index<array.length; index++){
         const e = array[index]
-        if(e.href.includes("spotifyclone/songsPlaylist/") && !e.href.includes(".htaccess")){
+        if(e.href.includes("/songsPlaylist") && !e.href.includes(".htaccess")){
             let folder = e.href.split("/").slice(-2)[1]
             console.log(folder)
             let a = await fetch(`/songsPlaylist/${folder}/info.json`);
@@ -96,7 +96,7 @@ async function displayAlbums(){
                         stroke="currentColor" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
                 </svg>
             </div>
-            <img src="songsPlaylist/${folder}/cover.jpg" alt="">
+            <img src="/songsPlaylist/${folder}/cover.jpg" alt="">
             <h2>${response.title}</h2>
             <p>${response.description}</p>
         </div>`
