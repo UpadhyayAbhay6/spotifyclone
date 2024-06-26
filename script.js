@@ -32,7 +32,7 @@ async function getSongs(folder) {
     }
     console.log(songs)
     
-    let songUL = document.querySelector(".songList").getElementsByTagName("ul")[1];
+    let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0];
     songUL.innerHTML="";
     for (const song of songs) {
         songUL.innerHTML = songUL.innerHTML + `<li>
@@ -80,7 +80,7 @@ async function displayAlbums(){
     for(let index=0; index<array.length; index++){
         const e = array[index]
         if(e.href.includes("/songsPlaylist") && !e.href.includes(".htaccess")){
-            let folder = e.href.split("/").slice(-2)[1]
+            let folder = e.href.split("/").slice(-1)[1]
             console.log(folder)
             let a = await fetch(`/songsPlaylist/${folder}/info.json`);
             console.log(a)
