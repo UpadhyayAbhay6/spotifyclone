@@ -56,7 +56,7 @@ async function getSongs(folder) {
             playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim())
         })
     })
-    
+    return songs
 }
 
 const playMusic = (track, pause = false) => {
@@ -80,7 +80,7 @@ async function displayAlbums(){
     for(let index=0; index<array.length; index++){
         const e = array[index]
         if(e.href.includes("/songsPlaylist") && !e.href.includes(".htaccess")){
-            let folder = e.href.split("/").slice(-1)[1]
+            let folder = e.href.split("/").slice(-2)[1]
             console.log(folder)
             let a = await fetch(`/songsPlaylist/${folder}/info.json`);
             console.log(a)
