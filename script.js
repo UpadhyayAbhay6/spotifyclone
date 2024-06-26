@@ -16,7 +16,7 @@ function convertSecondsToMinutesAndSeconds(seconds) {
 
 async function getSongs(folder) {
     currFolder = folder;
-    let a = await fetch(`http://127.0.0.1:5500/spotifyclone/${folder}/`);
+    let a = await fetch(`http://127.0.0.1:5500/${folder}/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -60,7 +60,7 @@ async function getSongs(folder) {
 }
 
 const playMusic = (track, pause = false) => {
-    currentSong.src = `/spotifyclone/${currFolder}/` + track
+    currentSong.src = `/${currFolder}/` + track
     if (!pause) {
         currentSong.play()
         play.src = "SVG/pause.svg"
@@ -70,7 +70,7 @@ const playMusic = (track, pause = false) => {
 
 }
 async function displayAlbums(){
-    let a = await fetch(`http://127.0.0.1:5500/spotifyclone/songsPlaylist/`);
+    let a = await fetch(`http://127.0.0.1:5500/songsPlaylist/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -79,10 +79,10 @@ async function displayAlbums(){
     let array = Array.from(anchors)
     for(let index=0; index<array.length; index++){
         const e = array[index]
-        if(e.href.includes("/spotifyclone/songsPlaylist/") && !e.href.includes(".htaccess")){
+        if(e.href.includes("/songsPlaylist/") && !e.href.includes(".htaccess")){
             let folder = e.href.split("/").slice(-2)[1]
             console.log(folder)
-            let a = await fetch(`/spotifyclone/songsPlaylist/${folder}/info.json`);
+            let a = await fetch(`/songsPlaylist/${folder}/info.json`);
             console.log(a)
             let response = await a.json()
             
@@ -96,7 +96,7 @@ async function displayAlbums(){
                         stroke="currentColor" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
                 </svg>
             </div>
-            <img src="/spotifyclone/songsPlaylist/${folder}/cover.jpg" alt="">
+            <img src="/songsPlaylist/${folder}/cover.jpg" alt="">
             <h2>${response.title}</h2>
             <p>${response.description}</p>
         </div>`
